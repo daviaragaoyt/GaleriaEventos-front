@@ -1,4 +1,4 @@
-/* Estilos gerais para o catálogo */
+/* Estilos gerais */
 body {
   font-family: Arial, sans-serif;
   background-color: #241533;
@@ -6,12 +6,22 @@ body {
   padding: 0;
 }
 
+/* Estilo para a logo no canto superior esquerdo */
+.logo {
+  position: absolute; /* Permite posicionamento relativo à janela */
+  top: 10px; /* Distância do topo da página */
+  left: 10px; /* Distância da borda esquerda */
+  width: 100px; /* Largura ajustável da imagem */
+  height: auto; /* Mantém a proporção da imagem */
+  border-radius:100%
+}
+
+
 .container {
   max-width: 1200px;
   margin: 20px auto;
   padding: 20px;
   background-color: #241533;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -19,17 +29,20 @@ h1 {
   color: white;
 }
 
-.catalogo {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+/* Estilo para o contêiner de eventos */
+#containerEventos {
+  display: flex; /* Exibe os eventos lado a lado */
+  flex-wrap: wrap; /* Permite que os eventos ocupem a próxima linha se o espaço não for suficiente */
+  gap: 20px; /* Espaçamento entre os eventos */
+  justify-content: space-evenly; /* Espaçamento uniforme entre os eventos */
+  padding: 10px;
 }
 
+/* Estilo para cada evento */
 .event-item {
   background-color: #fff;
   padding: 20px;
-  width: 250px;
+  width: 250px; /* Largura fixa para cada evento */
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -73,4 +86,17 @@ button {
 
 button:hover {
   background-color: #218838;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .event-item {
+    width: 100%; /* Ocupa toda a largura em telas pequenas */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .event-item {
+    width: 45%; /* Dois eventos por linha em telas médias */
+  }
 }

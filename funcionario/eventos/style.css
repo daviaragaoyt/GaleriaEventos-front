@@ -16,6 +16,16 @@ body {
   min-height: 100vh;
 }
 
+/* Estilo para a logo no canto superior esquerdo */
+.logo {
+  position: absolute; /* Permite posicionamento relativo à janela */
+  top: 10px; /* Distância do topo da página */
+  left: 10px; /* Distância da borda esquerda */
+  width: 100px; /* Largura ajustável da imagem */
+  height: auto; /* Mantém a proporção da imagem */
+  border-radius:100%
+}
+
 /* Container principal */
 .container {
   width: 90%;

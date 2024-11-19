@@ -1,3 +1,4 @@
+
 const API_BASE_URL = 'http://localhost:8080'; // Altere conforme necessário
 
 // Alterna entre os formulários de login e cadastro
@@ -36,7 +37,7 @@ async function login() {
                 alert("Login realizado com sucesso!");
                 // Armazenar o token no localStorage ou sessionStorage
                 
-                window.location.href = "../eventos/events.html"; // Redireciona para a página de eventos
+                window.location.href = `../eventos/events.html?userId=${data.id}`; // Redireciona para a página de eventos
             } else {
                 alert("Credenciais inválidas. Tente novamente!"); // Se não houver token
             }
@@ -78,4 +79,3 @@ async function signup() {
         alert("Ocorreu um erro ao tentar realizar o cadastro. Por favor, tente novamente.");
     }
 }
-

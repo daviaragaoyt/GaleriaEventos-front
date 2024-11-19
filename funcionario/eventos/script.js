@@ -13,7 +13,7 @@ async function listarEventos() {
         eventos.forEach(evento => {
             catalogo.innerHTML += `
                 <div class="event-item" data-id="${evento.id}">
-                    <img class="img" src="${evento.imgUrl || 'placeholder.jpg'}" alt="${evento.nome}" />
+                     <img class="img" src="../../imgs/Literatura.jpeg" alt="">
                     <h3>${evento.nome}</h3>
                     <p>${evento.descricao}</p>
                     <button onclick="editarEvento(${evento.id})">Editar</button>

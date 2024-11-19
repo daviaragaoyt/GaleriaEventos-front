@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva Confirmada</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="confirmation-container">
+        <h1>Ok <span id="nome_usuario"></span>, sua reserva foi feita!</h1>
+        <p>Agradecemos por sua reserva. Nos vemos no evento!</p>
+    </div>
+
+    <script>
+        // Pega o nome do usuário da URL e exibe na tela
+        const urlParams = new URLSearchParams(window.location.search);
+        const nomeUsuario = urlParams.get('usuario');
+        document.getElementById('nome_usuario').textContent = nomeUsuario;
+    </script>
+</body>
+
+</html>

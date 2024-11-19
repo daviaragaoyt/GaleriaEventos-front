@@ -1,123 +1,111 @@
-const catalogo = document.getElementById("containerCatalogo"); //Variavel que busca os elementos do "containerCatalogo"
+const catalogo = document.getElementById("containerCatalogo");
+const API_BASE_URL = "http://localhost:8080"; // Altere para a URL correta do seu backend
+const adicionarEventoBtn = document.getElementById("adicionarEventoBtn");
 
-const produtos = [
-    //Array com objetos dentro com suas propriedades
-    {
-        idProduto: 0,
-        nome: "Secretaria da Mulher",
-        descricao:"A Secretaria da Mulher do DF abriu 300 vagas no projeto Aviva Brasília, oferecendo capacitação gratuita em áreas como copeira e assistente administrativo para mulheres em vulnerabilidade. Os cursos, com 76 horas de duração, incluem treinamentos em habilidades profissionais e começam em 25 de novembro.",
-        imgUrl: "../imgs/Ministerio.jpeg",
-        Disponivel:50 ,
-    },
-    {
-        idProduto: 1,
-        nome: "Teia DF 2024-Celebrando a Cultura Viva!",
-        descricao:"Neste sábado (09/11), das 9h às 18h, participe do 2º Encontro de Pontos de Cultura no Espaço Voar Teatro de Bonecos, no Gama! Oficinas incríveis de Hip Hop com DJ Raffa e ilustrações com Jô Oliveira<br/><strong>📍 Local: SMA Conjunto K, Lote 05 – PRÓ DF – Gama</strong><br/><strong>📱 Mais informações: @meninodeceilandia</strong>",
-        imgUrl: "../imgs/Teia.jpeg",
-        Disponivel:50 ,
-    },
-    {
-        idProduto: 2,
-        nome: "",
-        descricao:"",
-        imgUrl: "../imgs/Literatura.jpeg",
-        Disponivel:50 ,
-    },
-   
-   
-];
+// Função para listar eventos a partir do backend
+async function listarEventos() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/evento/listar`);
+        if (!response.ok) throw new Error("Erro ao listar eventos.");
 
-produtos.map((item) => {
-    //Inserindo Html no codigo pelo Js, falando que sempre que tiver um elemento no catalago a div sera criada, e passando o item
-    catalogo.innerHTML += `<div class="event-item">
-                <img class="img" src="${item.imgUrl}"/>
-                <h3>${item.nome}</h3>
-                <p>${item.descricao}</p>
-                <button onclick="editarEvento(1)">Editar</button>
-                <button onclick="excluirEvento(1)">Excluir</button>
-            </div>`;
-});
+        const eventos = await response.json();
+        catalogo.innerHTML = ""; // Limpa o catálogo antes de renderizar os eventos
+        eventos.forEach(evento => {
+            catalogo.innerHTML += `
+                <div class="event-item" data-id="${evento.id}">
+                    <img class="img" src="${evento.imgUrl || 'placeholder.jpg'}" alt="${evento.nome}" />
+                    <h3>${evento.nome}</h3>
+                    <p>${evento.descricao}</p>
+                    <button onclick="editarEvento(${evento.id})">Editar</button>
+                    <button onclick="excluirEvento(${evento.id})">Excluir</button>
+                </div>`;
+        });
+    } catch (error) {
+        console.error("Erro ao listar eventos:", error);
+        alert("Não foi possível carregar os eventos. Tente novamente mais tarde.");
+    }
+}
 
-// function adicionarCarrinho(id, catalogo) {
-//     //Função para adicionar os itens e seus elementos para a proxima page(carrinho)
-//     let carrinhoNovo = []; //Array vazio
+// Função para editar evento
+async function editarEvento(id) {
+    const novoNome = prompt("Digite o novo nome do evento:");
+    const novaDescricao = prompt("Digite a nova descrição do evento:");
 
-//     const carrinhoAtual = JSON.parse(
-//         localStorage.getItem("carrinhoMelosConfeitaria") //Quarda as informações do objeto no Coockie
-//     );
+    if (novoNome && novaDescricao) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/evento/add`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id, nome: novoNome, descricao: novaDescricao }),
+            });
 
-//     if (carrinhoAtual != null) {
-//         //Se o carrinho atual tiver com itens, permanecerá com os itens
-//         carrinhoNovo = carrinhoAtual;
+            if (response.ok) {
+                alert("Evento atualizado com sucesso!");
+                listarEventos(); // Recarrega a lista de eventos
+            } else {
+                alert("Erro ao atualizar evento. Tente novamente.");
+            }
+        } catch (error) {
+            console.error("Erro ao editar evento:", error);
+            alert("Erro ao editar evento. Tente novamente mais tarde.");
+        }
+    } else {
+        alert("Nome e descrição são obrigatórios para editar um evento.");
+    }
+}
 
-//         if (catalogo == "catalago1") {
-//             //Verifica se é item do catalago 1
-//             carrinhoNovo.push(produtos[id]);
-//         }
-//         else {
-//             //Se não 2
-//             carrinhoNovo.push(outrosProdutos[id]);
-//         }
-//     } else {
-//         //Se tiver vazio, receberá os novos itens
-//         if (catalogo == "catalago1") {
-//             carrinhoNovo.push(produtos[id]);
-//         } else {
-//             carrinhoNovo.push(produtos[id]);
-//         }
-//     }
+// Função para excluir evento
+async function excluirEvento(id) {
+    if (confirm("Tem certeza de que deseja excluir este evento?")) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/evento/del/${id}`, {
+                method: "DELETE",
+            });
 
-//     localStorage.setItem(
-//         //Quarda os itens do novo carrinho no Cookie
-//         "carrinhoMelosConfeitaria",
-//         JSON.stringify(carrinhoNovo)
-//     );
-// }
+            if (response.ok) {
+                alert("Evento excluído com sucesso!");
+                listarEventos(); // Recarrega a lista de eventos
+            } else {
+                alert("Erro ao excluir evento. Tente novamente.");
+            }
+        } catch (error) {
+            console.error("Erro ao excluir evento:", error);
+            alert("Erro ao excluir evento. Tente novamente mais tarde.");
+        }
+    }
+}
 
-// const catalogo2 = document.getElementById("containerCatalogo2"); //A mesma coisa para o catalogo2
+// Função para adicionar novo evento
+async function adicionarEvento() {
+    const nome = prompt("Digite o nome do evento:");
+    const descricao = prompt("Digite a descrição do evento:");
+    const imgUrl = prompt("Digite a URL da imagem do evento (opcional):");
 
-// const outrosProdutos = [
-//     {
-//         idProduto: 0,
-//         nome: "Brigadeiro de Café",
-//         descricao: "24,99",
-//         imgUrl: "../imgs/cafe.jpg",
-//         quantidade: 1,
-//     },
-//     {
-//         idProduto: 1,
-//         nome: "Brownie com sorvete",
-//         descricao: "32,51",
-//         imgUrl: "../imgs/browniesorvete.jpg",
-//         quantidade: 1,
-//     },
-//     {
-//         idProduto: 2,
-//         nome: "Brigadeiro de Paçoca",
-//         descricao: "24,99",
-//         imgUrl: "../imgs/paçoca.jpg",
-//         quantidade: 1,
-//     },
-// ];
+    if (nome && descricao) {
+        try {
+            const response = await fetch(`${API_BASE_URL}/evento/add`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nome, descricao, imgUrl }),
+            });
 
-// outrosProdutos.map((item) => {
-//     catalogo2.innerHTML += `<div class="box">
-//     <div class="image">
-//         <img class="img" src=${item.imgUrl} alt />
-//     </div>
-//     <div class="content">
-//         <h3>${item.nome}</h3 >
-//         <div class="stars">
-//             <i class="fas fa-star"></i>
-//             <i class="fas fa-star"></i>
-//             <i class="fas fa-star"></i>
-//             <i class="fas fa-star"></i>
-//             <i class="fas fa-star-half-alt"></i>
-//         </div>
-//         <div class="price">${item.descricao}</div>
-//         <button id="candy12" type="submit" class="btn">
-//             <a href="../cart.html" onclick='adicionarCarrinho(${item.idProduto}, "catalago2")'>Adicionar ao carrinho</a>
-//         </button>
-//     </div >
-// </div > `;
-// });
+            if (response.ok) {
+                alert("Evento adicionado com sucesso!");
+                listarEventos(); // Recarrega a lista de eventos
+            } else {
+                alert("Erro ao adicionar evento. Tente novamente.");
+            }
+        } catch (error) {
+            console.error("Erro ao adicionar evento:", error);
+            alert("Erro ao adicionar evento. Tente novamente mais tarde.");
+        }
+    } else {
+        alert("Nome e descrição são obrigatórios para adicionar um evento.");
+    }
+}
+
+// Evento para o botão de adicionar novo evento
+adicionarEventoBtn.addEventListener("click", adicionarEvento);
+
+// Inicializa a listagem de eventos ao carregar a página
+listarEventos();

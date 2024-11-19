@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Login e Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Container para Login -->
+    <div class="container" id="login-container">
+        <h2>Login</h2>
+        <form onsubmit="event.preventDefault(); login();">
+            <div class="form-group">
+                <label for="login-email">Email:</label>
+                <input type="email" id="login-email" required>
+            </div>
+            <div class="form-group">
+                <label for="login-senha">Senha:</label>
+                <input type="password" id="login-senha" required>
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <a class="switch-btn" onclick="toggleForm()"><strong>Não tem uma conta? Crie já!</strong></a>
+        </form>
+    </div>
+
+    <!-- Container para Cadastro -->
+    <div class="container" id="signup-container" style="display:none;">
+        <h2>Cadastro Funcionario</h2>
+        <form onsubmit="event.preventDefault(); signup();">
+            <div class="form-group">
+                <label for="signup-type">Nome:</label>
+                <input type="text" name="" id="name">
+                <label>Email:</label>
+                <input type="email" name="" id="email">
+                <label>Senha:</label>
+                <input type="password" name="" id="senha">
+            </div>
+            <button type="submit" class="btn">Cadastrar</button>
+            <a class="switch-btn" onclick="toggleForm()"><strong>já tem uma conta? Faça Login</strong></a>
+        </form>
+    </div>
+
+
+
+
+    <script src="script.js"></script> <!-- Inclua o seu script JS aqui -->
+</body>
+
+</html>

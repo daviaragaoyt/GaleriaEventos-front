@@ -11,11 +11,27 @@
 <body>
     <div class="container">
         <h1>Eventos</h1>
+        <button class="btn" id="adicionarEventoBtn">Adicionar Novo Evento</button>
+        <div id="containerCatalogo"></div>
+    </div>
 
-        <!-- Lista de eventos -->
-        <div id="containerCatalogo">
-            <!-- Exemplo de evento (conteúdo dinâmico pode ser gerado pelo JavaScript) -->
+    <!-- Modal para cadastro de eventos -->
+    <div id="modalAdicionarEvento" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>Adicionar Novo Evento</h2>
+            <form id="formAdicionarEvento">
+                <label for="nome">Nome do Evento:</label>
+                <input type="text" id="nome" name="nome" required />
 
+                <label for="descricao">Descrição:</label>
+                <textarea id="descricao" name="descricao" required></textarea>
+
+                <label for="imagem">Imagem do Evento:</label>
+                <input type="file" id="imagem" name="imagem" accept="image/*" />
+
+                <button type="submit">Salvar</button>
+                <button type="button" id="fecharModalBtn">Fechar</button>
+            </form>
         </div>
     </div>
 

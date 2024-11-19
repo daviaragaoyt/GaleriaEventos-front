@@ -13,7 +13,7 @@ async function listarEventos() {
         eventos.forEach(evento => {
             catalogo.innerHTML += `
                 <div class="event-item" data-id="${evento.id}">
-                    <img class="img" src="${evento.imgUrl || 'placeholder.jpg'}" alt="${evento.nome}" />
+                    <img class="img" src="/imgs/imagem.png" alt="${evento.nome}" />
                     <h3>${evento.nome}</h3>
                     <p>${evento.descricao}</p>
                     <button onclick="editarEvento(${evento.id})">Editar</button>
@@ -33,10 +33,10 @@ async function editarEvento(id) {
 
     if (novoNome && novaDescricao) {
         try {
-            const response = await fetch(`${API_BASE_URL}/evento/add`, {
+            const response = await fetch(`${API_BASE_URL}/evento/atualizar/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ id, nome: novoNome, descricao: novaDescricao }),
+                body: JSON.stringify({nome: novoNome, descricao: novaDescricao }),
             });
 
             if (response.ok) {

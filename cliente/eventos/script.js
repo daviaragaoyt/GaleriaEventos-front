@@ -23,7 +23,7 @@ async function listarEventos() {
     eventos.forEach((evento) => {
       containerEventos.innerHTML += `
                 <div class="event-item" data-id="${evento.id}">
-    <img class="img" src="${evento.imgUrl || "placeholder.jpg"}" alt="${
+    <img class="img" src="/imgs/imagem.png"}" alt="${
         evento.nome
       }" />
     <h3>${evento.nome}</h3>

@@ -1,0 +1,18 @@
+### POST Request Example
+POST http://localhost:8080/reservas/cadastrar
+Content-Type: application/json
+
+{
+    "id_usuario": 10,
+    "id_evento": 5
+}
+
+###
+POST http://localhost:8080/evento/add
+Content-Type: application/json
+
+{
+    "descricao": "festinha do ney",
+    "nome": "festa do neymar",
+
+}

@@ -36,7 +36,7 @@ async function login() {
                 alert("Login realizado com sucesso!");
                 // Armazenar o token no localStorage ou sessionStorage
                 
-                window.location.href = "../eventos/events.html"; // Redireciona para a página de eventos
+                window.location.href = `../eventos/events.html?userId=${data.id}`; // Redireciona para a página de eventos
             } else {
                 alert("Credenciais inválidas. Tente novamente!"); // Se não houver token
             }

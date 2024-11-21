@@ -2,6 +2,10 @@ const catalogo = document.getElementById("containerCatalogo");
 const API_BASE_URL = "http://localhost:8080"; // Altere para a URL correta do seu backend
 const adicionarEventoBtn = document.getElementById("adicionarEventoBtn");
 
+function voltarPagina() {
+    window.history.back(); // Volta para a página anterior no histórico
+}
+
 // Função para listar eventos a partir do backend
 async function listarEventos() {
     try {
@@ -13,7 +17,7 @@ async function listarEventos() {
         eventos.forEach(evento => {
             catalogo.innerHTML += `
                 <div class="event-item" data-id="${evento.id}">
-                     <img class="img" src="../../imgs/Literatura.jpeg" alt="">
+                     <img class="img" src="../../imgs/imagem.png" alt="">
                     <h3>${evento.nome}</h3>
                     <p>${evento.descricao}</p>
                     <button onclick="editarEvento(${evento.id})">Editar</button>

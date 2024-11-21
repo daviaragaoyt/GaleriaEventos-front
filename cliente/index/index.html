@@ -2,57 +2,59 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login e Cadastro</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eventrix</title>
+    <link rel="icon" href="../../imgs/logo.jpeg" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <img src="../../imgs/logo.jpeg" alt="Logo" class="logo">
+    <header>
+        <nav>
+            <img src="../../imgs/logo.jpeg" alt="Logo" class="logo" />
+        </nav>
+    </header>
     <!-- Container para Login -->
     <div class="container" id="login-container">
-        <h2>Login</h2>
+        <h2>Login de Cliente</h2>
         <form onsubmit="event.preventDefault(); login();">
             <div class="form-group">
                 <label for="login-email">Email:</label>
-                <input type="email" id="login-email" required>
+                <input type="email" id="login-email" required />
             </div>
             <div class="form-group">
                 <label for="login-senha">Senha:</label>
-                <input type="password" id="login-senha" required>
+                <input type="password" id="login-senha" required />
             </div>
             <button type="submit" class="btn">Login</button>
-            <button type="button" class="switch-btn" onclick="toggleForm()">
-                <strong>Não tem uma conta? Crie já!</strong>
-            </button>
+            <a class="switch-btn" onclick="toggleForm()"><strong>Não tem uma conta? Crie já!</strong></a>
         </form>
     </div>
 
     <!-- Container para Cadastro -->
-    <div class="container" id="signup-container" style="display:none;">
-        <h2>Cadastro Cliente</h2>
+    <div class="container" id="signup-container" style="display: none">
+        <h2>Cadastrar Cliente</h2>
         <form onsubmit="event.preventDefault(); signup();">
             <div class="form-group">
                 <label for="name">Nome:</label>
-                <input type="text" id="name" required>
+                <input type="text" id="name" required />
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" required>
+                <input type="email" id="email" required />
             </div>
             <div class="form-group">
                 <label for="senha">Senha:</label>
-                <input type="password" id="senha" required>
+                <input type="password" id="senha" required />
             </div>
             <button type="submit" class="btn">Cadastrar</button>
-            <button type="button" class="switch-btn" onclick="toggleForm()">
-                <strong>Já tem uma conta? Faça Login</strong>
-            </button>
+            <a class="switch-btn" onclick="toggleForm()"><strong>já tem uma conta? Faça Login</strong></a>
         </form>
     </div>
 
-    <script src="script.js"></script> <!-- Inclua o seu script JS aqui -->
+    <script src="script.js"></script>
+    <!-- Inclua o seu script JS aqui -->
 </body>
 
 </html>

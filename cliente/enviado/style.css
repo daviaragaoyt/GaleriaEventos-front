@@ -1,25 +1,56 @@
-/* style.css */
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #241533; /* Azul claro suave */
-    color: #333; /* Cor do texto */
+/* Reseta e configurações gerais */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Ajusta para começar do topo */
+    align-items: center;
+    height: 100vh;
+    background-color: white; /* Fundo roxo */
+    margin: 0; /* Remove qualquer margem padrão */
+}
+
+/* Header / Navbar */
+header {
+    width: 100%;
+    background: #241533; /* Fundo branco para a navbar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Fixa no topo */
+    top: 0; /* Coloca no topo */
+    left: 0; /* Garante que se estenda desde a borda esquerda */
+    z-index: 10; /* Coloca acima de outros elementos */
+}
+
+nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100px;
 }
 
-.confirmation-container {
+.logo {
+    width: 100px; /* Ajusta o tamanho da logo */
+    height: auto;
+    border-radius: 50%; /* Torna a logo redonda */
+}
+
+
+
+.container {
     text-align: center;
-    background: #333; /* Fundo branco */
+    background:#241533 ; /* Fundo branco */
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     max-width: 400px;
-    width: 90%;
+    width: 100%;
+    margin: 35vh 0 20px; /* Espaço do topo para o header fixo */
 }
 
 h1 {

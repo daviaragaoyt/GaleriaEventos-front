@@ -4,15 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Login e Cadastro</title>
+    <title>Eventrix</title>
+    <link rel="icon" href="../../imgs/logo.jpeg" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <img src="../../imgs/logo.jpeg" alt="Logo" class="logo">
+    <header>
+        <nav>
+            <img src="../../imgs/logo.jpeg" alt="Logo" class="logo">
+        </nav>
+    </header>
     <!-- Container para Login -->
     <div class="container" id="login-container">
-        <h2>Login</h2>
+        <h2>Login de Funcionario</h2>
         <form onsubmit="event.preventDefault(); login();">
             <div class="form-group">
                 <label for="login-email">Email:</label>
@@ -29,7 +34,7 @@
 
     <!-- Container para Cadastro -->
     <div class="container" id="signup-container" style="display:none;">
-        <h2>Cadastro Funcionario</h2>
+        <h2>Cadastrar Funcionario</h2>
         <form onsubmit="event.preventDefault(); signup();">
             <div class="form-group">
                 <label for="signup-type">Nome:</label>

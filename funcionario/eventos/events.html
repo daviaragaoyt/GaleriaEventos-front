@@ -2,22 +2,32 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eventos</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+    <header>
+        <nav>
+            <img src="../../imgs/logo.jpeg" alt="Logo" class="logo" />
+        </nav>
+    </header>
+    <!-- Botão de Voltar -->
     <div class="container">
         <h1>Eventos</h1>
+        <button class="back-btn" onclick="voltarPagina()">Voltar</button>
         <button class="btn" id="adicionarEventoBtn">Adicionar Novo Evento</button>
         <div id="containerCatalogo"></div>
     </div>
 
-
-
     <!-- Arquivo JavaScript para funcionalidades e conexão com a API -->
+    <script>
+        function voltarPagina() {
+            window.history.back(); // Volta para a página anterior
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 

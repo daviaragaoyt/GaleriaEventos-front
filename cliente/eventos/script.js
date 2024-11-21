@@ -3,8 +3,12 @@ const API_BASE_URL = "http://localhost:8080"; // Altere para a URL do seu backen
 const token = localStorage.getItem("token"); // Recupera o token de login para autenticação
 const nomeUsuario = localStorage.getItem("nome_usuario"); // Recupera o nome do usuário (pode ser salvo durante o login)
 const urlParams = new URLSearchParams(window.location.search);
-const userId = urlParams.get('userId');
+const userId = urlParams.get("userId");
 
+
+function voltarPagina() {
+  window.history.back(); // Volta para a página anterior no histórico
+}
 // Função para listar eventos
 async function listarEventos() {
   try {
@@ -23,9 +27,7 @@ async function listarEventos() {
     eventos.forEach((evento) => {
       containerEventos.innerHTML += `
                 <div class="event-item" data-id="${evento.id}">
-    <img class="img" src="/imgs/imagem.png"}" alt="${
-        evento.nome
-      }" />
+    <img class="img" src="/imgs/imagem.png"}" alt="${evento.nome}" />
     <h3>${evento.nome}</h3>
     <p>${evento.descricao}</p>
     
@@ -42,8 +44,6 @@ async function listarEventos() {
 
 // Função para realizar a reserva
 async function reservarEvento(id) {
-  
-
   // Simula o delay de 5 segundos
   setTimeout(async () => {
     // Após 5 segundos, realiza a reserva e redireciona para a página de confirmação
@@ -51,7 +51,6 @@ async function reservarEvento(id) {
       const reserva = {
         id_evento: id,
         id_usuario: userId,
-      
       };
       const response = await fetch(`${API_BASE_URL}/reservas/cadastrar`, {
         method: "POST",
@@ -61,9 +60,8 @@ async function reservarEvento(id) {
         },
         body: JSON.stringify(reserva),
       });
-// Redireciona para a página de loading
-window.location.href = "../loading/loading.html"; // A página de loading pode ser um HTML com animação de carregamento
-     
+      // Redireciona para a página de loading
+      window.location.href = "../loading/loading.html"; // A página de loading pode ser um HTML com animação de carregamento
     } catch (error) {
       console.error("Erro ao reservar evento:", error);
       alert("Erro ao tentar reservar o evento. Tente novamente mais tarde.");

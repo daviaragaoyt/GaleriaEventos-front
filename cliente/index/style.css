@@ -1,3 +1,4 @@
+/* Reseta e configurações gerais */
 * {
     margin: 0;
     padding: 0;
@@ -7,46 +8,66 @@
 
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start; /* Ajusta para começar do topo */
     align-items: center;
     height: 100vh;
-    background-color: #241533;
+    background-color: white; /* Fundo roxo */
+    margin: 0; /* Remove qualquer margem padrão */
 }
 
-/* Estilo para a logo no canto superior esquerdo */
-.logo {
-    position: absolute; /* Permite posicionamento relativo à janela */
-    top: 10px; /* Distância do topo da página */
-    left: 10px; /* Distância da borda esquerda */
-    width: 100px; /* Largura ajustável da imagem */
-    height: auto; /* Mantém a proporção da imagem */
-    border-radius:100%
-  }
+/* Header / Navbar */
+header {
+    width: 100%;
+    background: #241533; /* Fundo branco para a navbar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Fixa no topo */
+    top: 0; /* Coloca no topo */
+    left: 0; /* Garante que se estenda desde a borda esquerda */
+    z-index: 10; /* Coloca acima de outros elementos */
+}
 
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+
+.logo {
+    width: 100px; /* Ajusta o tamanho da logo */
+    height: auto;
+    border-radius: 50%; /* Torna a logo redonda */
+}
+
+/* Container */
 .container {
     width: 100%;
     max-width: 400px;
     padding: 2rem;
-    background: white;
+    background: #241533; /* Fundo branco para o container */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
+    margin: 35vh 0 20px; /* Espaço do topo para o header fixo */
 }
 
 h2 {
     margin-bottom: 1rem;
-    color: #333;
+    color: white;
 }
 
+/* Formulário */
 .form-group {
     margin-bottom: 1rem;
     text-align: left;
 }
 
 label {
+    
     display: block;
     font-size: 0.9rem;
-    color: #333;
+    color: white;
     margin-bottom: 0.2rem;
 }
 
@@ -54,6 +75,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 select {
+    
     width: 100%;
     padding: 0.8rem;
     border: 1px solid #ccc;
@@ -63,22 +85,29 @@ select {
 .btn {
     width: 100%;
     padding: 0.8rem;
-    background-color: #b23365;
+    background: linear-gradient(45deg, #b23365, #e91e63); /* Degradê de rosa escuro para rosa vibrante */
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
+    transition: background 0.3s ease, transform 0.2s ease; /* Transições suaves */
 }
 
 .btn:hover {
-    background-color: #45a049;
+    background: linear-gradient(45deg, #991f4d, #c2185b); /* Degradê mais escuro no hover */
+    transform: translateY(-2px); /* Leve elevação no hover */
+}
+
+
+.btn:hover {
+    background-color: #991f4d; /* Cor do botão ao passar o mouse */
 }
 
 .switch-btn {
     margin-top: 1rem;
     font-size: 0.9rem;
-    color: #333;
+    color: white;
     cursor: pointer;
     text-decoration: underline;
 }
